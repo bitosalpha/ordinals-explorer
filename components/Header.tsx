@@ -49,7 +49,7 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
             href="/inscriptions"
             className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-neutral-0"
           >
-            Explorer
+            Marketplace
           </Link>
           <Link
             href="/protocols/brc-20"
