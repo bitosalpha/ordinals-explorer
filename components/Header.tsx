@@ -51,12 +51,14 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
           >
             Marketplace
           </Link>
-          <Link
-            href="/protocols/brc-20"
+          <a 
+            href="https://hedgepay-koi-inscription.vercel.app/"
+            target="_blank" 
+            rel="noopener noreferrer" 
             className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-neutral-0"
           >
             Inscriptions
-          </Link>
+          </a>
           {/* todo: re-enable different explore modes */}
           {/* <HoverCard openDelay={0}>
             <HoverCardTrigger className="cursor-default select-none rounded-md px-3.5 py-2.5 hover:bg-neutral-0">
