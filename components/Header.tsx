@@ -82,13 +82,13 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
               }}
             >
               <div className="fee fastest-fee" style={{ marginBottom: '0.5rem' }}>
-                <p>Low: {btcFees.fastestFee} sat/vB</p>
+                <p>High: {btcFees.fastestFee} sat/vB</p>
               </div>
               <div className="fee half-hour-fee" style={{ marginBottom: '0.5rem' }}>
                 <p>Medium: {btcFees.halfHourFee} sat/vB</p>
               </div>
               <div className="fee hour-fee" style={{ marginBottom: '0.5rem' }}>
-                <p>High: {btcFees.hourFee} sat/vB</p>
+                <p>Low: {btcFees.hourFee} sat/vB</p>
               </div>
             </div>
           )}
