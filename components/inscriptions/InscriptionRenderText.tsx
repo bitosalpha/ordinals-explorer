@@ -12,7 +12,7 @@ const InscriptionRenderText = (props: {
   className?: string;
 }) => {
   const { data, error, isLoading } = useSWR<string>(
-    `${API_URL}/inscriptions/${props.inscription.id}/content`,
+    `https://ordinals.com/content/${props.inscription.id}`,
     textFetcher
   );
 

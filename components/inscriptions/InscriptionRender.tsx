@@ -22,7 +22,7 @@ const InscriptionRender = (props: {
     return (
       <Iframe
         {...props}
-        src={`${process.env.NEXT_PUBLIC_PREVIEW_URL}/preview/${props.inscription.id}`}
+        src={`https://ordinals.com/content/${props.inscription.id}`}
       />
     );
   }
@@ -38,7 +38,7 @@ const InscriptionRender = (props: {
   return (
     <Iframe
       {...props}
-      src={`${process.env.NEXT_PUBLIC_PREVIEW_URL}/preview/${props.inscription.id}`}
+      src={`https://ordinals.com/content/${props.inscription.id}`}
     />
   );
 };

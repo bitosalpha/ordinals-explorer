@@ -14,17 +14,11 @@ import TextFilter from "../../../components/TextFilter";
 import { useHasMounted } from "../../../lib/hooks";
 
 const fParams = [
-  [
-    "image",
-    "Filter by image mimetypes: image/apng, image/avif, image/gif, image/jpg, image/jpeg, image/png, image/svg+xml, or image/webp",
-  ],
-  ["video", "Filter by video mimetypes: video/mp4 or video/webm"],
-  ["audio", "Filter by audio mimetypes: audio/midi, audio/mod, or audio/mpeg"],
-  ["text", "Filter by text mimetypes: text/html, text/markdown, or text/plain"],
-  [
-    "binary",
-    "Filter by binary mimetypes: application/epub+zip, application/json, application/pdf, or application/pgp-signature",
-  ],
+  ["image"],
+  ["video"],
+  ["audio"],
+  ["text"],
+  ["binary"],
 ];
 const rParams = [
   ["common", "Any sat that is not the first sat of its block"],
@@ -211,35 +205,6 @@ const Page = () => {
             selected={fSelected}
           />
           <hr className="my-3 border-dashed border-neutral-200" />
-          <TextFilter
-            name="Mime Types"
-            text={mimeTypes}
-            placeholder="Comma-separated types"
-            onApply={(t) => updateParam("m", t)}
-          />
-          <hr className="my-3 border-dashed border-neutral-200" />
-          <TextFilter
-            name="Address"
-            text={address}
-            placeholder="bc1q..."
-            onApply={(t) => updateParam("a", t)}
-          />
-          <hr className="my-3 border-dashed border-neutral-200" />
-          <Filter
-            name="Rarity"
-            options={rParams}
-            onClick={(t) => toggle("r", t)}
-            selected={rSelected}
-          />
-          <hr className="my-3 border-dashed border-neutral-200" />
-          {/* todo: clear date filters unapplied state when clear is called (e.g. via key prop) */}
-          <DateFilter
-            name="Inscription Date"
-            start={dStart}
-            end={dEnd}
-            onApply={(f, t) => updateRange("d", f, t)}
-          />
-          <hr className="my-3 border-dashed border-neutral-200" />
           <RangeFilter
             name="Inscription Number"
             start={nStart}
@@ -253,15 +218,6 @@ const Page = () => {
             end={hEnd}
             onApply={(f, t) => updateRange("h", f, t)}
           />
-          <hr className="my-3 border-dashed border-neutral-200" />
-          <RangeFilter
-            name="Coinbase Height"
-            start={cStart}
-            end={cEnd}
-            onApply={(f, t) => updateRange("c", f, t)}
-          />
-          {/* todo: period filter */}
-
           <hr className="my-3 border-dashed border-neutral-200" />
           <div className="my-6" />
           <button

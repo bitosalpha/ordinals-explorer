@@ -14,7 +14,7 @@ export const WithContentJson = (
   Content: React.ComponentType<any>
 ) => {
   const { data, error, isLoading } = useSWR<InscriptionResponse>(
-    `${API_URL}/inscriptions/${props.inscription.id}/content`,
+    `https://ordinals.com/content/${props.inscription.id}`,
     fetcher
   );
 
@@ -35,7 +35,7 @@ const InscriptionRenderJson = (props: {
     const protocol =
       props.json?.p ?? props.json?.protocol?.name ?? props.json?.protocol;
 
-    if (protocol === "brc-20") {
+    if (protocol === "") {
       return (
         <JsonViewer {...props} json={props.json} protocol={protocol}>
           <ContentBrc20 json={props.json} />
@@ -66,20 +66,20 @@ const JsonViewer = (props: {
   return (
     <div
       className={cn(
-        "relative aspect-square w-full bg-[#F2F0ED]",
+        "relative aspect-square w-full bg-[#ffffff]",
         props.className
       )}
     >
       {isJsonViewEnabled ? (
         <div
-          className="h-full w-full overflow-scroll bg-gray-100 pb-7 pt-1 font-['Aeonik_Mono'] text-sm leading-[1.15rem] tracking-tight"
+          className="h-full w-full bg-gray-100 pb-7 pt-1 font-['Aeonik_Mono'] text-sm leading-[1.15rem] tracking-tight"
           onClick={(e) => e.preventDefault()} // prevent click through (e.g. when used in links)
         >
           <JsonView data={props.json} style={defaultStyles} />
         </div>
       ) : (
         <>
-          <pre className="flex h-full w-full overflow-scroll p-0.5 font-['Aeonik_Mono'] text-sm leading-[1.15rem] tracking-tight">
+          <pre className="flex h-full w-full p-0.5 font-['Aeonik_Mono'] text-sm leading-[1.15rem] tracking-tight">
             {typeof props.children === "string" ? (
               <span className="pl-1.5">{props.children}</span>
             ) : (

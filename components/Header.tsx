@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Metadata } from "next";
 import Script from "next/script";
@@ -14,7 +14,33 @@ import { WalletConnectButton } from '../components/wallet-connect-button';
 
 const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehydratedState?: string; onPersistState: (dehydratedState: string) => void; onSignOut: () => void; children?: React.ReactNode }) => {
   const pathname = usePathname();
-
+  const [btcFees, setBtcFees] = useState({
+    fastestFee: 0,
+    halfHourFee: 0,
+    hourFee: 0
+  });
+  const [showBtcFees, setShowBtcFees] = useState(false);
+  const toggleDropdown = () => setShowBtcFees(!showBtcFees);
+  
+  useEffect(() => {
+    // Fetch Bitcoin transaction fees from the mempool.space API
+    const fetchBtcFees = async () => {
+      try {
+        const response = await fetch('https://mempool.space/api/v1/fees/recommended');
+        const data = await response.json();
+        setBtcFees({
+          fastestFee: data.fastestFee,
+          halfHourFee: data.halfHourFee,
+          hourFee: data.hourFee
+        });
+      } catch (error) {
+        console.error('Error fetching Bitcoin transaction fees:', error);
+      }
+    };
+  
+    fetchBtcFees();
+  }, []);
+  
   return (
     <ClientProvider
       appName="Nextjs + Microstacks"
@@ -42,6 +68,32 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
           ) : (
             <div className="h-10" />
           )}
+
+        {/* Gas Icon with Dropdown for Bitcoin Transaction Fees */}
+        <div className="gas-icon-dropdown relative" onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown}>
+          <span className="cursor-pointer">⛽Sat Gas {btcFees.halfHourFee}🔻</span>
+          {showBtcFees && (
+            <div className="btc-transaction-fees absolute bg-white shadow-md mt-2 p-4 rounded-md"
+              style={{
+                display: 'block',
+                zIndex: 1000,
+                minWidth: '200px', // Set a minimum width
+                fontWeight: '500', // Adjust font weight as needed
+              }}
+            >
+              <div className="fee fastest-fee" style={{ marginBottom: '0.5rem' }}>
+                <p>Low: {btcFees.fastestFee} sat/vB</p>
+              </div>
+              <div className="fee half-hour-fee" style={{ marginBottom: '0.5rem' }}>
+                <p>Medium: {btcFees.halfHourFee} sat/vB</p>
+              </div>
+              <div className="fee hour-fee" style={{ marginBottom: '0.5rem' }}>
+                <p>High: {btcFees.hourFee} sat/vB</p>
+              </div>
+            </div>
+          )}
+        </div>
+
         </AnimatePresence>
         {/* todo: explore button, stats, connect wallet */}
         <div className="hidden sm:block">
@@ -49,7 +101,7 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
             href="/inscriptions"
             className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-neutral-0"
           >
-            Marketplace
+            Explorer
           </Link>
           <a 
             href="https://hedgepay-koi-inscription.vercel.app/"
@@ -114,6 +166,5 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
 };
 
 export default Header;
-
 
 
