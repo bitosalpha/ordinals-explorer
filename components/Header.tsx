@@ -96,12 +96,19 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
 
         </AnimatePresence>
         {/* todo: explore button, stats, connect wallet */}
+        
         <div className="hidden sm:block">
           <Link
             href="/inscriptions"
             className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-neutral-0"
           >
             Explorer
+          </Link>
+          <Link
+            href="/marketplace"
+            className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-neutral-0"
+          >
+            Marketplace
           </Link>
           <a 
             href="https://hedgepay-koi-inscription.vercel.app/"
