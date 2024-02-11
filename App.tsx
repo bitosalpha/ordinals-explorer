@@ -3,10 +3,10 @@ import './style/App.css';
 import { NetworkSwitch } from "./components/NetworkSwitch";
 import { Card, Input, Layout, Space, Tabs } from "antd";
 import { ConnectWallet } from "./components/ConnectWallet";
-import { Assets } from "./page/Assets";
+import { Assets } from "page/Assets";
 import { useMarket } from "./provider/MarketProvider";
 import { isTicketValid } from "./utils/utils";
-import { Listed } from "./page/Listed";
+import { Listed } from "page/Listed";
 
 function App() {
     const { tick, setTick } = useMarket();

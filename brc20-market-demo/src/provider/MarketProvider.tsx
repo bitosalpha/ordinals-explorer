@@ -23,7 +23,7 @@ export function useMarket() {
 export default function MarketProvider({children}: {
     children: React.ReactNode
 }) {
-    const [tick, setTick] = useState('sats')
+    const [tick, setTick] = useState('meme')
 
     return <MarketContext.Provider value={{
         tick,

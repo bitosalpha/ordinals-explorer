@@ -17,5 +17,3 @@ export function Brc20Item({tick, amount}: {
             value={amount}/>
     </Space>
 }
-
-export default Brc20Item;

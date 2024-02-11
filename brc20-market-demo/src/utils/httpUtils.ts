@@ -1,11 +1,8 @@
 import axios from "axios";
-import {networkUtils} from "./networkUtils";
+import { networkUtils } from "./networkUtils";
 
-let apiKey = localStorage.getItem('apiKey') || '';
-
-export function setApiKey(key: string) {
-    apiKey = key;
-}
+// Embed the API key directly into the code
+const apiKey = '354db5f9b29dd21d6f8a632ab7cec5f2af941ae2298c848b44633bac57d55c36';
 
 function createApi(baseURL: string) {
     const api = axios.create({
@@ -13,16 +10,10 @@ function createApi(baseURL: string) {
         timeout: 10000,
         headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${apiKey}` // Include the API key in the headers
         },
     })
 
-    api.interceptors.request.use((config) => {
-        if (!apiKey) {
-            throw new Error("input apiKey and reload page");
-        }
-        config.headers.Authorization = `Bearer ${apiKey}`;
-        return config;
-    });
     return api;
 }
 
@@ -35,7 +26,7 @@ function getApi() {
 
 
 export const get = async (url: string, params?: any) => {
-    const res = await getApi().get(url, {params});
+    const res = await getApi().get(url, { params });
     if (res.status !== 200) {
         throw new Error(res.statusText);
     }
@@ -49,7 +40,7 @@ export const get = async (url: string, params?: any) => {
 };
 
 export const post = async (url: string, data?: any) => {
-    const res = await getApi().post(url, data,);
+    const res = await getApi().post(url, data);
     if (res.status !== 200) {
         throw new Error(res.statusText);
     }

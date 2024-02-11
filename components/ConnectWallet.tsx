@@ -1,4 +1,4 @@
-import {useUnisat} from "../provider/UniSatProvider";
+import {useUnisat} from "provider/UniSatProvider";
 import {Button, Card} from "antd";
 
 export function ConnectWallet() {

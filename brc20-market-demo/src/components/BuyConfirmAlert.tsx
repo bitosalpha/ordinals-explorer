@@ -119,5 +119,3 @@ function KeyValue({label, value, suffix, fontSize = 14, valueColor}: {
         </Col>
     </>
 }
-
-export default BuyConfirmAlert;
