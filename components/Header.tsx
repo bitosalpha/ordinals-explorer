@@ -105,7 +105,7 @@ const Header = ({ dehydratedState, onPersistState, onSignOut, children }: { dehy
             Explorer
           </Link>
           <Link
-            href="/marketplace"
+            href="/"
             className="rounded-md px-3.5 py-2.5 transition-colors hover:bg-neutral-0"
           >
             Marketplace
